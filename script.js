@@ -15,7 +15,13 @@ function multiply(a,b){
 }
 
 function divide(a,b){
-    return a / b;
+    if(b == 0){
+        return "FAIL"
+    }
+    else{
+        return a / b;
+    }
+    
 }
 
 function operate(firstNum,operator, secondNum){
@@ -96,16 +102,38 @@ buttons.forEach(button => {
 
         //USER PRESSES EQUALS
         else if(button.classList.contains("equals")){
-            let result = operate(firstNum,operator,secondNum);
-            currentDisplay = result
-            current.textContent = currentDisplay
-
-            firstNum = ""
-            operator = ""
-            secondNum = ""
-            pastResults = result
-            currentDisplay=""
-            console.log(`it equals = ${result}`)
+            if(firstNum == "" || operator == "" || secondNum == ""){
+                currentDisplay = "ERROR"
+                current.textContent= currentDisplay
+            }
+            else{
+                let result = operate(firstNum,operator,secondNum);
+                if(result == "FAIL"){
+                    current.textContent= "Can't Divide By ZERO"
+                    console.log(`clear`)
+                    firstNum = ""
+                    operator = ""
+                    secondNum = ""
+                    
+                    previous.textContent= ""
+                    currentDisplay=""
+                    pastResults = ""
+                    enterSecondDigit = false
+                }
+                else{
+                    currentDisplay = result
+                    current.textContent = currentDisplay
+        
+                    firstNum = ""
+                    operator = ""
+                    secondNum = ""
+                    pastResults = result
+                    currentDisplay=""
+                    console.log(`it equals = ${result}`)
+                }
+                
+            }
+            
         }
 
          
@@ -117,13 +145,26 @@ buttons.forEach(button => {
             console.log(secondNum)
             console.log("    ")
             firstNum = operate(firstNum,operator,secondNum);
-            
-            operator = button.textContent
-            console.log(`first num = ${firstNum} operator = ${operator}`)
-            secondNum = ""
-            currentDisplay += button.textContent
-            current.textContent = currentDisplay
-            enterSecondDigit = false
+            if(firstNum == "FAIL"){
+                current.textContent= "Can't Divide By ZERO"
+                console.log(`clear`)
+                firstNum = ""
+                operator = ""
+                secondNum = ""
+                
+                previous.textContent= ""
+                currentDisplay=""
+                pastResults = ""
+                enterSecondDigit = false
+            }
+            else{
+                operator = button.textContent
+                console.log(`first num = ${firstNum} operator = ${operator}`)
+                secondNum = ""
+                currentDisplay += button.textContent
+                current.textContent = currentDisplay
+                enterSecondDigit = false
+            }    
         }
 
         //USER ENTERS SECOND NUMBER
