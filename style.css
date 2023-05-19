@@ -33,7 +33,7 @@ body{
     height: 100px;
     margin-bottom: 30px;
     width: 335px;
-    border-radius: 5px;
+    border-radius: 10px;
     border: 1px solid black;
     border-color: black;
   }
@@ -50,7 +50,7 @@ body{
     height: 50px;
     border: 1px solid black;
     font-size: 16px;
-    border-radius: 5px;
+    border-radius: 10px;
   }
   
   #clear,
